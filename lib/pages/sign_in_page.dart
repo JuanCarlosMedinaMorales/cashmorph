@@ -47,7 +47,6 @@ class _SignInPageState extends State<SignInPage> {
                     },
                     child: const Text("Iniciar"),
                   ), // Boton para iniciar la app
-
                 ],
               ),
             ),
