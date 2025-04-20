@@ -12,11 +12,10 @@ class MoneyConverter extends StatefulWidget {
 
 class _MoneyConverterState extends State<MoneyConverter> {
 
-  Double ValorTotal = 0 as Double;
-  String _opcion1 = 'Peso Colombiano';
+  double ValorTotal = 0.0;
+  String _opcion1 = 'Yen';
   String _opcion2 = 'Dolar';
   final _numero1 = TextEditingController();
-  final _numero2 = TextEditingController();
 
 
   @override
@@ -31,139 +30,116 @@ class _MoneyConverterState extends State<MoneyConverter> {
             ),
           ), //Fondo
           Padding(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(35),
               child: Center(
-               child: Column(
-                 mainAxisAlignment: MainAxisAlignment.center,
-                 children: [
-                   Image(
-                     image: AssetImage("assets/images/Cam.png"),
-                     width: 200,
-                     height: 200,
-                   ),
-                   SizedBox(height: 16,),
-                   Row(
-                     children: [
-                       Expanded(
-                         child: DropdownButton(
-                           items: const[
-                             DropdownMenuItem(child: Text("Peso Colombiano"), value: "Peso Colombiano",),
-                             DropdownMenuItem(child: Text("Dolar"), value: "Dolar",),
-                             DropdownMenuItem(child: Text("Euro"), value: "Euro",),
-                             DropdownMenuItem(child: Text("Yen"), value: "Yen",),
-                           ],
-                           value: _opcion1,
-                           onChanged: dropdownCallback,
-                           iconEnabledColor: Colors.yellow,
-                           dropdownColor: Colors.black45,
-                           style: const TextStyle(
-                             color: Colors.white,
-                             fontSize: 15,
-                           ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image(
+                        image: AssetImage("assets/images/Cam.png"),
+                        width: 200,
+                        height: 200,
+                      ),
+                      SizedBox(height: 1,),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: DropdownButton(
+                              items: const[
+                                DropdownMenuItem(child: Text("Peso Colombiano"), value: "Peso Colombiano",),
+                                DropdownMenuItem(child: Text("Dolar"), value: "Dolar",),
+                                DropdownMenuItem(child: Text("Euro"), value: "Euro",),
+                                DropdownMenuItem(child: Text("Yen"), value: "Yen",),
+                              ],
+                              value: _opcion1,
+                              onChanged: dropdownCallback,
+                              iconEnabledColor: Colors.yellow,
+                              dropdownColor: Colors.black45,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                              ),
 
-                         ),
-                       ),
-                       Expanded(
-                         child: DropdownButton(
-                           items: const[
-                             DropdownMenuItem(child: Text("Peso Colombiano"), value: "Peso Colombiano",),
-                             DropdownMenuItem(child: Text("Dolar"), value: "Dolar",),
-                             DropdownMenuItem(child: Text("Euro"), value: "Euro",),
-                             DropdownMenuItem(child: Text("Yen"), value: "Yen",),
-                           ],
-                           value: _opcion2,
-                           onChanged: dropdownCallback2,
-                           iconEnabledColor: Colors.yellow,
-                           dropdownColor: Colors.black45,
-                           style: const TextStyle(
-                             color: Colors.white,
-                             fontSize: 15,
-                           ),
+                            ),
+                          ),
+                          Expanded(
+                            child: DropdownButton(
+                              items: const[
+                                DropdownMenuItem(child: Text("Peso Colombiano"), value: "Peso Colombiano",),
+                                DropdownMenuItem(child: Text("Dolar"), value: "Dolar",),
+                                DropdownMenuItem(child: Text("Euro"), value: "Euro",),
+                                DropdownMenuItem(child: Text("Yen"), value: "Yen",),
+                              ],
+                              value: _opcion2,
+                              onChanged: dropdownCallback2,
+                              iconEnabledColor: Colors.yellow,
+                              dropdownColor: Colors.black45,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                              ),
 
-                         ),
-                       ),
-                     ],
-                   ),//seleccionar el tipo de moneda
-                   SizedBox(height: 16,),
-                   Row(
-                     children: [
-                       Expanded(
-                           child: TextFormField(
-                             controller: _numero1,
-                             decoration: const InputDecoration(
-                               border: OutlineInputBorder(),
-                               labelText: "Valor de moneda 1",
-                               prefixIcon: Icon(Icons.money),
-                             ),
-                             keyboardType: TextInputType.number,
-                             autovalidateMode: AutovalidateMode.onUserInteraction,
-                             validator: (value) {
-                               if (value!.isEmpty){
-                                 return "Debe digitar un valor a convertir valido";
-                               } else{
-                                 if (!value!.isValidNumber()){ //verifica si el valor solo tiene numeros
-                                   return "Valor no valido de ${_opcion1}";
-                                 }
-                               }
-                               return null;
+                            ),
+                          ),
+                        ],
+                      ),//seleccionar el tipo de moneda
+                      SizedBox(height: 16,),
+                      TextFormField(
+                        controller: _numero1,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: "Valor de la moneda a convertir",
+                          labelStyle: TextStyle(color: Colors.white),
+                          prefixIcon: Icon(Icons.monetization_on),
+                        ),
+                        style: const TextStyle(
+                          color: Colors.white,
+                        ),
+                        keyboardType: TextInputType.number,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (value) {
+                          if (value!.isEmpty){
+                            return "Debe digitar un valor a convertir valido";
+                          } else{
+                            if (!value!.isValidNumber()){ //verifica si el valor solo tiene numeros
+                              return "Valor no valido de ${_opcion1}";
+                            }
+                          }
+                          return null;
 
-                             },
-                           ),// Primer valor
-                       ),
-                       SizedBox(width: 16,),
-                       Expanded(
-                           child: TextFormField(
-                             controller: _numero2,
-                             decoration: const InputDecoration(
-                               border: OutlineInputBorder(),
-                               labelText: "Valor de moneda 2",
-                               prefixIcon: Icon(Icons.money),
-                             ),
-                             keyboardType: TextInputType.number,
-                             autovalidateMode: AutovalidateMode.onUserInteraction,
-                             validator: (value) {
-                               if (value!.isEmpty){
-                                 return "Debe digitar un valor a convertir valido";
-                               } else{
-                                 if (!value!.isValidNumber()){ //verifica si el valor solo tiene numeros
-                                   return "Valor no valido de ${_opcion2}";
-                                 }
-                               }
-                               return null;
+                        },
+                      ),// Valor a convertir
+                      SizedBox(height: 20,),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            textStyle: const TextStyle(
+                                fontSize:20,
+                                fontStyle: FontStyle.italic,
+                                color: Colors.black
+                            ),
+                            backgroundColor: Color(0xFFFFD700), // Color oro
+                            elevation: 20,
+                          ),
+                          onPressed:(){
+                            _onConverterButtonClicked();
+                          },
+                          child: const Text("Calcular")
+                      ),
+                      SizedBox(height: 10,),
+                      Text(
+                        "El valor del $_opcion2 actual es $ValorTotal",
+                        style: const TextStyle(
+                            fontSize: 20,
+                            fontStyle: FontStyle.italic,
+                            color: Colors.white
+                        ),
+                      ), // el valor convertido
+                      SizedBox(height: 90,),
 
-                             },
-                           ),// Segundo valor
-                       ),
-                     ],
-                   ),//ingraser los valores
-                   SizedBox(height: 20,),
-                   ElevatedButton(
-                       style: ElevatedButton.styleFrom(
-                         textStyle: const TextStyle(
-                             fontSize:30,
-                             fontStyle: FontStyle.italic,
-                             color: Colors.black
-                         ),
-                         backgroundColor: Color(0xFFFFD700), // Color oro
-                         elevation: 20,
-                       ),
-                       onPressed:(){
-                         _onConverterButtonClicked();
-                       },
-                       child: const Text("Calcular")
-                   ),
-                   SizedBox(height: 20,),
-                   Text(
-                     "El total es $ValorTotal",
-                     style: const TextStyle(
-                         fontSize: 20,
-                         fontStyle: FontStyle.italic,
-                         color: Colors.white
-                     ),
-                   ),
-
-                 ],
-               ),
+                    ],
+                  ),
+                ),
               ),
           ),
         ],
@@ -179,41 +155,71 @@ class _MoneyConverterState extends State<MoneyConverter> {
       });
     }
   }//cambia el valor seleccionado para la moneda
-  void dropdownCallback2 (String? selectedValue){
-    if (selectedValue is String){
+  void dropdownCallback2 (String? selectedValue2){
+    if (selectedValue2 is String){
       setState((){
-        _opcion2 = selectedValue;
+        _opcion2 = selectedValue2;
       });
     }
   }
-  void _onConverterButtonClicked(){
+  double _onConverterButtonClicked(){
     if(_opcion1=="Peso Colombiano" && _opcion2=="Dolar"){
-      ValorTotal= (4309.76 * double.parse(_numero2.text)) as Double;
+      setState(() {
+        ValorTotal= double.parse(_numero1.text) / 4309.76;
+      });
+
     } else if(_opcion1=="Peso Colombiano" && _opcion2=="Euro"){
-      ValorTotal=4911.41 * (double.parse(_numero2.text)) as Double;
+      setState(() {
+        ValorTotal= double.parse(_numero1.text)/ 4911.41;
+      });
+
     }else if(_opcion1=="Peso Colombiano" && _opcion2=="Yen"){
-      ValorTotal=30.3159 * (double.parse(_numero2.text)) as Double;
+      setState(() {
+        ValorTotal=double.parse(_numero1.text) / 30.3159;
+      });
     }else if(_opcion1=="Dolar" && _opcion2=="Peso Colombiano"){
-      ValorTotal=4309.76 * (double.parse(_numero1.text)) as Double;
+      setState(() {
+        ValorTotal=double.parse(_numero1.text) / 4309.76;
+      });
+
     }else if(_opcion1=="Dolar" && _opcion2=="Euro"){
-      ValorTotal=1.1395 * (double.parse(_numero2.text)) as Double;
+      setState(() {
+        ValorTotal=double.parse(_numero1.text) / 1.1395;
+      });
     }else if(_opcion1=="Dolar" && _opcion2=="Yen"){
-      ValorTotal=0.0070339 * (double.parse(_numero2.text)) as Double;
+      setState(() {
+        ValorTotal=double.parse(_numero1.text) / 0.0070339;
+      });
     }else if(_opcion1=="Euro" && _opcion2=="Peso Colombiano"){
-      ValorTotal=4911.41 * (double.parse(_numero1.text)) as Double;
+      setState(() {
+        ValorTotal=double.parse(_numero1.text) / 4911.41;
+      });
     }else if(_opcion1=="Euro" && _opcion2=="Dolar"){
-      ValorTotal=1.1395 * (double.parse(_numero1.text)) as Double;
+      setState(() {
+        ValorTotal=double.parse(_numero1.text) / 1.1395;
+      });
     }else if(_opcion1=="Euro" && _opcion2=="Yen"){
-      ValorTotal=0.0061728 * (double.parse(_numero2.text)) as Double;
+      setState(() {
+        ValorTotal=double.parse(_numero1.text) / 0.0061728;
+      });
     }else if(_opcion1=="Yen" && _opcion2=="Peso Colombiano"){
-      ValorTotal=30.3159 * (double.parse(_numero1.text)) as Double;
+      setState(() {
+        ValorTotal=double.parse(_numero1.text) / 30.3159;
+      });
     }else if(_opcion1=="Yen" && _opcion2=="Dolar"){
-      ValorTotal=0.0070339 * (double.parse(_numero1.text)) as Double;
+      setState(() {
+        ValorTotal=double.parse(_numero1.text) / 0.0070339;
+      });
     }else if(_opcion1=="Yen" && _opcion2=="Euro"){
-      ValorTotal=0.0061728 * (double.parse(_numero1.text)) as Double;
+      setState(() {
+        ValorTotal=double.parse(_numero1.text) / 0.0061728;
+      });
     } else{
-      ValorTotal=0 as Double ;
+      setState(() {
+        ValorTotal=0.0;
+      });
     }
+    return ValorTotal;
 
   }
 }
