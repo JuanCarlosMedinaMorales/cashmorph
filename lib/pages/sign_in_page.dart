@@ -28,8 +28,8 @@ class _SignInPageState extends State<SignInPage> {
                 children: [
                   const Image(
                     image: AssetImage("assets/images/Mon.png"),
-                    width: 300,
-                    height: 300,
+                    width: 200,
+                    height: 200,
                   ), // Logo
                   const SizedBox(height: 32),
                   ElevatedButton(

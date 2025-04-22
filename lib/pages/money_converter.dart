@@ -15,6 +15,7 @@ class _MoneyConverterState extends State<MoneyConverter> {
   double ValorTotal = 0.0;
   String _opcion1 = 'Yen';
   String _opcion2 = 'Dolar';
+  String _moneda = "Moneda";
   final _numero1 = TextEditingController();
 
 
@@ -128,7 +129,7 @@ class _MoneyConverterState extends State<MoneyConverter> {
                       ),
                       SizedBox(height: 10,),
                       Text(
-                        "El valor del $_opcion2 actual es $ValorTotal",
+                        "El valor en $_moneda actual es $ValorTotal",
                         style: const TextStyle(
                             fontSize: 20,
                             fontStyle: FontStyle.italic,
@@ -163,6 +164,7 @@ class _MoneyConverterState extends State<MoneyConverter> {
     }
   }
   double _onConverterButtonClicked(){
+    _moneda=_opcion2;
     if(_opcion1=="Peso Colombiano" && _opcion2=="Dolar"){
       setState(() {
         ValorTotal= double.parse(_numero1.text) / 4309.76;
