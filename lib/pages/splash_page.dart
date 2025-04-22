@@ -21,7 +21,7 @@ class _SplashPageState extends State<SplashPage> {
         children: [
           Positioned.fill(//imagen de fondo
               child: Image.asset(
-                  'assets/images/FM.png',
+                  'assets/images/Carga.png',
                   fit: BoxFit.cover, //para ajustar la imagen
               ),
           ),
