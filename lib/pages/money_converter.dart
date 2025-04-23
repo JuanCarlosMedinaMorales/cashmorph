@@ -129,7 +129,7 @@ class _MoneyConverterState extends State<MoneyConverter> {
                       ),
                       SizedBox(height: 10,),
                       Text(
-                        "El valor en $_moneda actual es $ValorTotal",
+                        "El valor en $_moneda actual es ${ValorTotal.toStringAsFixed(4)}",
                         style: const TextStyle(
                             fontSize: 20,
                             fontStyle: FontStyle.italic,
@@ -177,44 +177,60 @@ class _MoneyConverterState extends State<MoneyConverter> {
 
     }else if(_opcion1=="Peso Colombiano" && _opcion2=="Yen"){
       setState(() {
-        ValorTotal=double.parse(_numero1.text) / 30.3159;
+        ValorTotal=double.parse(_numero1.text) / 30.2683;
+      });
+    }else if(_opcion1=="Peso Colombiano" && _opcion2=="Peso Colombiano"){
+      setState(() {
+        ValorTotal=double.parse(_numero1.text);
       });
     }else if(_opcion1=="Dolar" && _opcion2=="Peso Colombiano"){
       setState(() {
-        ValorTotal=double.parse(_numero1.text) / 4309.76;
+        ValorTotal=double.parse(_numero1.text) / 0.000232829;
       });
 
     }else if(_opcion1=="Dolar" && _opcion2=="Euro"){
       setState(() {
-        ValorTotal=double.parse(_numero1.text) / 1.1395;
+        ValorTotal=double.parse(_numero1.text) * 0.877189;
       });
     }else if(_opcion1=="Dolar" && _opcion2=="Yen"){
       setState(() {
-        ValorTotal=double.parse(_numero1.text) / 0.0070339;
+        ValorTotal=double.parse(_numero1.text) * 141.881;
+      });
+    }else if(_opcion1=="Dolar" && _opcion2=="Dolar"){
+      setState(() {
+        ValorTotal=double.parse(_numero1.text);
       });
     }else if(_opcion1=="Euro" && _opcion2=="Peso Colombiano"){
       setState(() {
-        ValorTotal=double.parse(_numero1.text) / 4911.41;
+        ValorTotal=double.parse(_numero1.text) * 4894.27;
       });
     }else if(_opcion1=="Euro" && _opcion2=="Dolar"){
       setState(() {
-        ValorTotal=double.parse(_numero1.text) / 1.1395;
+        ValorTotal=double.parse(_numero1.text) * 1.13952;
       });
     }else if(_opcion1=="Euro" && _opcion2=="Yen"){
       setState(() {
-        ValorTotal=double.parse(_numero1.text) / 0.0061728;
+        ValorTotal=double.parse(_numero1.text) * 161.755;
+      });
+    }else if(_opcion1=="Euro" && _opcion2=="Euro"){
+      setState(() {
+        ValorTotal=double.parse(_numero1.text);
+      });
+    }else if(_opcion1=="Yen" && _opcion2=="Yen"){
+      setState(() {
+        ValorTotal=double.parse(_numero1.text);
       });
     }else if(_opcion1=="Yen" && _opcion2=="Peso Colombiano"){
       setState(() {
-        ValorTotal=double.parse(_numero1.text) / 30.3159;
+        ValorTotal=double.parse(_numero1.text) * 30.2530;
       });
     }else if(_opcion1=="Yen" && _opcion2=="Dolar"){
       setState(() {
-        ValorTotal=double.parse(_numero1.text) / 0.0070339;
+        ValorTotal=double.parse(_numero1.text) * 0.00704642;
       });
     }else if(_opcion1=="Yen" && _opcion2=="Euro"){
       setState(() {
-        ValorTotal=double.parse(_numero1.text) / 0.0061728;
+        ValorTotal=double.parse(_numero1.text) * 0.00618311;
       });
     } else{
       setState(() {
